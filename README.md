@@ -76,13 +76,13 @@ if ($utopian->IsBotVoting()) {
 }
 ```
 
-## Reload the Data
+## Reload the Data (Moderators)
 This will re-fetch the data from Utopian API.
 ```
 $moderators->Reload();
 ```
 
-## Raw Data
+## Raw Data (Moderators)
 ```
 $moderators->GetRawData();
 ```
@@ -151,13 +151,13 @@ foreach ($moderators->GetListOfActiveModerators() as $acc) {
 }
 ```
 
-## Reload the Data
+## Reload the Data (Sponsors)
 This will re-fetch the data from Utopian API.
 ```
 $sponsors->Reload();
 ```
 
-## Raw Data
+## Raw Data (Sponsors)
 ```
 $sponsors->GetRawData();
 ```
