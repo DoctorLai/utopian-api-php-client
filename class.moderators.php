@@ -1,6 +1,6 @@
 <?php
 
-require('class.utopian.php');
+require_once('class.utopian.php');
 
 class Moderators extends Utopian {
   
