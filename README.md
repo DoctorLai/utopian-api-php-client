@@ -1,5 +1,5 @@
 # utopian-api-php-client
-PHP Client implementation of public Utopian API. The basic class is `Utopian` which `Moderators` extends. 
+PHP Client implementation of public Utopian API. The basic class is `Utopian` which `Moderators` and `Sponsors` extend. 
 
 # Installation and Usage
 You just need to `git clone` the project and reference the unit.
@@ -14,11 +14,17 @@ If you just need `Moderators` you can do this instead:
 require('class.moderators.php');
 ```
 
+If you just need `Sponsors` you can do this instead:
+
+```
+require('class.sponsors.php');
+```
 
 ## Creating Instances
 ```
 $utopian = new Utopian();
 $moderators = new Moderators();
+$sponsors = new Sponsors();
 ```
 
 ## Getting a list of moderators
@@ -99,7 +105,7 @@ print_r($justyy);
 
 ## Get Total Paid Rewards
 ```
-echo "Total Paid Rewards: " . $moderators->GetTottalPaidRewards();
+echo "Total Paid Rewards: " . $moderators->GetTotalPaidRewards();
 ```
 
 ## Get Total of should_receive_rewards
@@ -142,5 +148,71 @@ foreach ($moderators->GetListOfBannedModerators() as $acc) {
 ```
 foreach ($moderators->GetListOfActiveModerators() as $acc) {
    echo "Active: " . $acc;
+}
+```
+
+## Reload the Data
+This will re-fetch the data from Utopian API.
+```
+$sponsors->Reload();
+```
+
+## Raw Data
+```
+$sponsors->GetRawData();
+```
+
+## Get a list of Sponsors
+```
+print_r($sponsors->GetList());
+```
+
+## Get Total Number of sponsors
+```
+echo "there are " . $sponsors->GetTotal() . " sponsors.";
+```
+
+## Find a Sponsor
+```
+$ned = $sponsors->GetSponsor('ned');
+print_r($ned);
+```
+
+## Get Total Paid Rewards
+```
+echo "Total Paid Rewards: " . $sponsors->GetTotalPaidRewards();
+```
+
+## Get Total of should_receive_rewards
+```
+echo "Should Receive Total: " . $sponsors->GetShouldReceiveRewards();
+```
+
+## Get Total Sum of total_paid_rewards_steem
+```
+echo "Steem: " . $sponsors->GetTotalPaidRewardsSteem();
+```
+
+## Get Total Vesting by all sponsors
+```
+echo "Total Vesting by all sponsors: " . $sponsors->GetTotalVesting();
+```
+
+## Get a list of Witnesses
+```
+foreach ($sponsors->GetListOfWitness() as $acc) {
+   echo "Witness: " . $acc;
+}
+```
+
+## Get Total of paid-rewards-steem
+```
+echo "Total Paid Rewards Steem: " . $sponsors->GetTotalPaidRewardsSteem();
+```
+
+## Get a list of Opted-out sponsors
+```
+foreach ($sponsors->GetListOfOptedOutSponsors() as $acc) {
+   echo "Opted_out: " . $acc;
 }
 ```
