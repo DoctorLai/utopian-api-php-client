@@ -71,6 +71,7 @@ if ($utopian->IsBotVoting()) {
 ```
 
 ## Reload the Data
+This will re-fetch the data from Utopian API.
 ```
 $moderators->Reload();
 ```
