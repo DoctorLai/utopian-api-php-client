@@ -1,7 +1,8 @@
 <?php
-use PHPUnit\Framework\TestCase;
+require __DIR__ . '/../vendor/autoload.php';
+require __DIR__ . '/../class.moderators.php';
 
-require('../class.moderators.php');
+use PHPUnit\Framework\TestCase;
 
 class UtopianTests_moderators_tests extends TestCase {
   
@@ -12,7 +13,7 @@ class UtopianTests_moderators_tests extends TestCase {
   
   public function test_count() {
      $mods = new Moderators();
-     $this->assertEqual($mods->GetTotal(), count($mods->GetList()));
+     $this->assertEquals($mods->GetTotal(), count($mods->GetList()));
   }
   
   public function test_total_paid_rewards() {
