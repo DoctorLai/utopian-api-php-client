@@ -1,6 +1,6 @@
 <?php
 
-require('class.utopian.php');
+require_once('class.utopian.php');
 
 class Sponsors extends Utopian {
   
@@ -50,7 +50,9 @@ class Sponsors extends Utopian {
   public function GetTotalPaidRewards() {
     $all = 0;
     foreach ($this->sponsors->results as $m) {
-      $all += $m->total_paid_rewards;
+      if (property_exists($m,'total_paid_rewards')) {
+        $all += $m->total_paid_rewards;
+      }
     }
     return $all;  
   }

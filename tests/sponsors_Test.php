@@ -1,7 +1,8 @@
 <?php
-use PHPUnit\Framework\TestCase;
+require __DIR__ . '/../vendor/autoload.php';
+require __DIR__ . '/../class.sponsors.php';
 
-require('../class.sponsors.php');
+use PHPUnit\Framework\TestCase;
 
 class UtopianTests_sponsors_tests extends TestCase {
 
@@ -12,7 +13,7 @@ class UtopianTests_sponsors_tests extends TestCase {
   
   public function test_count() {
      $sponsors = new Sponsors();
-     $this->assertEqual($sponsors->GetTotal(), count($sponsors->GetList()));
+     $this->assertEquals($sponsors->GetTotal(), count($sponsors->GetList()));
   }
   
   public function test_total_paid_rewards() {

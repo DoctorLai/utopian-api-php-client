@@ -1,7 +1,8 @@
 <?php
-use PHPUnit\Framework\TestCase;
+require __DIR__ . '/../vendor/autoload.php';
+require __DIR__ . '/../class.utopian.php';
 
-require('../class.utopian.php');
+use PHPUnit\Framework\TestCase;
 
 class UtopianTests_basic_tests extends TestCase {
 
