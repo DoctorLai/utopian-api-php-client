@@ -1,5 +1,5 @@
 # utopian-api-php-client
-PHP Client implementation of public Utopian API. The basic class is `Utopian` which `Moderators` and `Sponsors` extend. 
+PHP Client implementation of public Utopian API. The basic class is `Utopian` which `Moderators`, `Stats` and `Sponsors` extend. 
 
 # Installation and Usage
 You just need to `git clone` the project and reference the unit.
@@ -20,11 +20,18 @@ If you just need `Sponsors` you can do this instead:
 require('class.sponsors.php');
 ```
 
+If you just need `Stats` you can do this instead:
+
+```
+require('class.stats.php');
+```
+
 ## Creating Instances
 ```
 $utopian = new Utopian();
 $moderators = new Moderators();
 $sponsors = new Sponsors();
+$stats = new Stats();
 ```
 
 ## Getting a list of moderators
@@ -215,4 +222,51 @@ echo "Total Paid Rewards Steem: " . $sponsors->GetTotalPaidRewardsSteem();
 foreach ($sponsors->GetListOfOptedOutSponsors() as $acc) {
    echo "Opted_out: " . $acc;
 }
+```
+
+## Reload the Data (Stats)
+This will re-fetch the data from Utopian API.
+```
+$stats->Reload();
+```
+
+## Raw Data (Stats)
+```
+$stats->GetRawData();
+```
+
+## Get a list of all cateogries
+```
+print_r($stats->GetCategories());
+```
+
+## Get data for a cateogry
+```
+$blog = $stats->GetCategory('blog');
+if ($blog) {
+   echo $blog->total_images;
+}
+```
+
+## Get attribute
+Possible values: 
+\_id, total_paid_rewards, total_pending_rewards, total_paid_authors, total_paid_curators, \__v, stats_moderator_shares_last_check, stats_sponsors_shares_last_check, stats_total_pending_last_check, stats_total_paid_last_check, stats_paid_moderators_last_check, stats_paid_sponsors_last_check, stats_categories_last_check, stats_last_updated_posts, bot_is_voting, last_limit_comment_benefactor, stats_total_pending_last_post_date, stats_total_paid_last_post_date, stats_total_moderated
+
+```
+echo $stats->GetValue('bot_is_voting');
+```
+
+## Get category attribute
+Possible key attributes (second parameter): average_tags_per_post, total_tags, average_links_per_post, total_links, average_images_per_post, total_images, average_posts_length, total_posts_length, average_paid_curators, total_paid_curators, average_paid_authors, total_paid_authors, total_paid, average_likes_per_post, total_likes, total_posts
+
+```
+echo $stats->GetCategoryValue('blog', 'total_tags');
+```
+
+## Get category attribute array
+This method will return array (key-value pairs) for given attribute. For example, the following sums up all `total_links` in all categories.
+
+```
+$x = array_values($stats->GetCategoryValueArray("total_links"));
+echo array_sum($x);
 ```
