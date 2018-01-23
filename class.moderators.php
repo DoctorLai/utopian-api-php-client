@@ -50,7 +50,9 @@ class Moderators extends Utopian {
   public function GetTotalPaidRewards() {
     $all = 0;
     foreach ($this->moderators->results as $m) {
-      $all += $m->total_paid_rewards;
+      if (property_exists($m,'total_paid_rewards')) {
+        $all += $m->total_paid_rewards;
+      }
     }
     return $all;  
   }
