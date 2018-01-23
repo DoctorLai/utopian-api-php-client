@@ -1,9 +1,39 @@
 # utopian-api-php-client
 PHP Client implementation of public Utopian API. The basic class is `Utopian` which `Moderators`, `Stats` and `Sponsors` extend. 
 
-# Installation and Usage
+# Installation
+
+Install composer if you don't already have it.
+
+```
+sudo apt-get install composer
+```
+
 You just need to `git clone` the project and reference the unit.
 
+```
+cd utopian-api-php-client
+```
+
+Once in the repo's directory, run composer install for the dependencies:
+```
+composer install
+```
+
+# Running the tests
+
+You can then test all tests using this command: (Only if the files in the directory end in Test.php with a capital 'T')
+
+```
+vendor/phpunit/phpunit/phpunit tests
+```
+
+Or if you want to test one at a time, do this:
+```
+vendor/phpunit/phpunit/phpunit UnitTest tests/sponsors_Test.php
+```
+
+# Usage
 ```
 require('class.utopian.php');
 ```
