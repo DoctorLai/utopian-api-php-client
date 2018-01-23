@@ -37,8 +37,8 @@ class Utopian {
     /*
         call API and set status
     */
-    public function CallAPI($method, $api, $data = null, $headers = null) {
-      $url = $this->API_BASE_URL . $method . '/';
+    public function CallAPI($api, $method, $data = null, $headers = null) {
+      $url = $this->API_BASE_URL . $api . '/';
       $curl = curl_init($url);
       curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
       if ($headers) {
@@ -46,7 +46,7 @@ class Utopian {
       }
       switch ($method) {
         case "GET":
-            curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data));
+            curl_setopt($curl, CURLOPT_URL, $url . "?" . $data);
             curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "GET");
             break;
         case "POST":
@@ -144,7 +144,6 @@ class Utopian {
       Get posts
     */
     public function GetPosts($param = null) {
-      $param = $param || array();
       return $this->CallAPI("posts", "GET", $param);     
     } 
     
